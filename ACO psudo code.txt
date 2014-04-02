@@ -1,0 +1,80 @@
+function ACO
+	while (termination_criterion_not_satidfied)
+		scheduel_activities
+			ants_generation_and_activity();
+			pheromone_evaporation();
+
+			% optional
+			daemon_actions();
+
+			%refers to centralized actions 
+			%executed by a daemon possessing global knowledge
+
+		end % scheduel actitvities
+
+	end %while
+
+end % function ACO
+
+%********************************
+
+function ants_generation_and_activity();
+
+	while (available_resources)
+
+		scheduel_the_creation_of_a_new_ant();
+
+		new_active_ant() ;
+
+	end % while
+
+
+end % function ants_generation_and_activity();
+
+%********************************
+
+function new_active_ant()   % ant life cycle
+
+	initialize_ant();
+
+	M = update_ant_memory();
+
+	while  ( current_state ~= target_state)
+
+	%The target state refers to a complete solution,
+	%or to a component of a complete solution, built by the ant.
+
+		A = read_local_ant_routing_table();
+
+		P = compute_transition_probabilities(A,M,problem_constraints) ;
+
+		next_state = apply_ant_desicion_policy(P,problem_constraints);
+
+		move_to_next_state(next_state) ;
+
+		if (online_step-by-step_pheromone_update)
+
+			deposit_pheromone_on_the_visited_arc();
+
+			update_ant-routing_table();
+
+		end % if
+
+		M = update_internal_state();
+
+	end & while
+
+	if (online_delay_pheromone_update)
+
+		evaluate_solution();
+
+		deposit_pheromone_on_all_visited_arcs();
+
+		update_ant_routing_table();
+
+	end % if
+
+	die();
+
+
+end % function new_active_ant()
