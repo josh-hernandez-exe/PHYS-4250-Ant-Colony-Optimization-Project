@@ -1,0 +1,13 @@
+Cheapest Cost : 107
+Assignments   : 4785
+ 
+Assignment
+----------
+Dept 1 to Site 2
+Dept 2 to Site 1
+Dept 3 to Site 5
+Dept 4 to Site 3
+Dept 5 to Site 4
+Dept 6 to Site 8
+Dept 7 to Site 7
+Dept 8 to Site 6
